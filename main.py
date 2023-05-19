@@ -55,7 +55,7 @@ def calculate_snr(original, noise ):
     # Calculate the signal-to-noise ratio (SNR) using the mean square error (MSE) between the original and noisy images
     snr = 20 * math.log10(np.mean(original) / math.sqrt(mse))
 
-    return psnr, snr
+    return  snr
 
 
 
@@ -86,6 +86,8 @@ denoised_image = cv2.merge((denoised_b, denoised_g, denoised_r))
 if 1 == level:
     print('PSNR value: {}'.format(peak_signal_noise_ratio(image, noisy_image)))
     print('Denoise PSNR value: {}'.format(peak_signal_noise_ratio(image, denoised_image.astype(np.uint8))))
+    print('SNR value: {}'.format(calculate_snr(image, denoised_image.astype(np.uint8))))
+    print('Denoise SNR value: {}'.format(calculate_snr(image, noisy_image)))
 
 
 # Display the original and denoised images
